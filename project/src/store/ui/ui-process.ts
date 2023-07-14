@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { DEFAULT_SORTING, NameSpace } from '../../const';
+import { CITIES, NameSpace, SortingTypes } from '../../const';
 
 type UiProcess = {
   city: string;
@@ -7,21 +7,20 @@ type UiProcess = {
 };
 
 const initialState: UiProcess = {
-  city: 'Amsterdam',
-  sorting: DEFAULT_SORTING,
+  city: CITIES[0],
+  sorting: SortingTypes[0],
 };
 
 export const UiProcess = createSlice({
   name: NameSpace.Ui,
   initialState,
   reducers: {
-    changeSorting: (state, action: PayloadAction<{ sorting: string }>) => {
-      const { sorting } = action.payload;
-      state.sorting = sorting;
+    changeSorting: (state, action: PayloadAction<string>) => {
+      state.sorting = action.payload;
     },
-    changeCity: (state, action: PayloadAction<{ city: string }>) => {
-      const { city } = action.payload;
-      state.city = city;
+    changeCity: (state, action: PayloadAction<string>) => {
+
+      state.city = action.payload;
     }
   }
 });

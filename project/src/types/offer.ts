@@ -14,6 +14,7 @@ export type OfferType = {
   description: string;
   location: Location;
   id: number;
+  isFavorite: boolean;
 };
 
 export type City = {
@@ -40,6 +41,9 @@ export type Point = {
   zoom: number;
 }
 
-export type Points = Point[];
+export type FavoritePayload = {
+  id: number;
+  status: number;
+};
 
 export type Offers = OfferType[];

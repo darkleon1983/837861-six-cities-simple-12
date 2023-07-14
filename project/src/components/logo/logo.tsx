@@ -1,17 +1,34 @@
-import cn from 'classnames';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
 
 type LogoProps = {
-  className: string;
+  type: 'header' | 'footer';
 };
 
-function Logo({ className }: LogoProps): JSX.Element {
+const sizes = {
+  header: {
+    width: 81,
+    height: 41,
+  },
+  footer: {
+    width: 64,
+    height: 33,
+  },
+};
+
+const Logo: React.FC<LogoProps> = ({ type }) => {
+  const size = sizes[type];
   return (
-    <Link className={cn('header__logo-link', className)} to={AppRoute.Root}>
-      <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
+    <Link to="/" className={`${type}__logo-link`}>
+      <img
+        className={`${type}__logo`}
+        src="img/logo.svg"
+        alt="6 cities logo"
+        width={size.width}
+        height={size.height}
+      />
     </Link>
   );
-}
+};
 
-export default Logo;
+export default React.memo(Logo);
